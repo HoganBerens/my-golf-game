@@ -1,17 +1,15 @@
-import { useState } from "react";
 import "./App.css";
-import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import NewScore from "./components/newScores/newScore";
+import Dashboard from "./components/dashboard/dashboard";
 
 function App() {
-  const [apiData, setApiData] = useState();
-
-  useEffect(() => {
-    fetch("http://localhost:9000/testAPI")
-      .then((response) => response.text())
-      .then((data) => setApiData(data));
-  }, []);
-
-  return <div>{apiData}</div>;
+  return (
+    <Routes>
+      <Route path={""} exact={true} element={<Dashboard />} />
+      <Route path={"/newScore"} exact={true} element={<NewScore />} />
+    </Routes>
+  );
 }
 
 export default App;
