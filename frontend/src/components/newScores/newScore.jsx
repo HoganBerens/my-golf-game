@@ -1,4 +1,5 @@
 import React from "react";
+import "./newScore.css";
 import {
   faChevronUp,
   faChevronDown,
@@ -11,13 +12,12 @@ import fairwayPhoto from "../../assets/fairway.png";
 
 const NewScore = () => {
   return (
-    <div>
-      <img src={fairwayPhoto} />
-      <img src={greenPhoto} />
-      <FontAwesomeIcon icon={faChevronUp} />
-      <FontAwesomeIcon icon={faChevronRight} />
-      <FontAwesomeIcon icon={faChevronDown} />
-      <FontAwesomeIcon icon={faChevronLeft} />
+    <div className="container-fluid vh-100 vw-100 d-flex justify-content-center align-items-center ">
+      <FontAwesomeIcon icon={faChevronUp} className="fa-4x" />
+      <img className="col-sm-5" src={fairwayPhoto} />
+      <FontAwesomeIcon icon={faChevronRight} className="fa-4x" />
+      <FontAwesomeIcon icon={faChevronDown} className="fa-4x" />
+      <FontAwesomeIcon icon={faChevronLeft} className="fa-4x" />
     </div>
   );
 };
