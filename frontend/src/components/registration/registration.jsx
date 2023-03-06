@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Registration.css";
 import axios from "axios";
-import { useEffect } from "react";
 
 const Registration = () => {
   const config = {
@@ -36,20 +35,9 @@ const Registration = () => {
       });
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/users", config)
-      .then((response) => {
-        console.log(response, "success");
-      })
-      .catch((err) => {
-        console.log(err, "error");
-      });
-  }, []);
-
   return (
     <div className=" registration-container container ">
-      <h1>Sign Up</h1>
+      <h1 className="signUp-title">Sign Up</h1>
       <form onSubmit={newUserHandler} className="signUp-form-container row">
         <div className="signUp-name">
           <input type="text" placeholder="First Name" />

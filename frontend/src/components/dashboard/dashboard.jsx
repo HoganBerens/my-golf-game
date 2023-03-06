@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   return (
     <div className="container">
-      <Link to="/newScore">Enter New Score</Link>
+      <Link to="/newScoreDetails">Enter New Score</Link>
     </div>
   );
 };

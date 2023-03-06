@@ -12,12 +12,46 @@ import fairwayPhoto from "../../assets/fairway.png";
 
 const NewScore = () => {
   return (
-    <div className="container-fluid vh-100 vw-100 d-flex justify-content-center align-items-center ">
-      <FontAwesomeIcon icon={faChevronUp} className="fa-4x" />
-      <img className="col-sm-5" src={fairwayPhoto} />
-      <FontAwesomeIcon icon={faChevronRight} className="fa-4x" />
-      <FontAwesomeIcon icon={faChevronDown} className="fa-4x" />
-      <FontAwesomeIcon icon={faChevronLeft} className="fa-4x" />
+    <div className=" newScore-container container">
+      <div className="newScore-fairway-container">
+        <img className="fairway-photo " src={fairwayPhoto} />
+        <FontAwesomeIcon
+          icon={faChevronUp}
+          className=" fairway-chevron-up fa-3x"
+        />
+        <FontAwesomeIcon
+          icon={faChevronRight}
+          className=" fairway-chevron-right  fa-3x"
+        />
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className=" fairway-chevron-down fa-3x"
+        />
+        <FontAwesomeIcon
+          icon={faChevronLeft}
+          className=" fairway-chevron-left fa-3x"
+        />
+      </div>
+      <div>How far did you have in?</div>
+      <div className="newScore-green-container">
+        <img className=" green-photo " src={greenPhoto} />
+        <FontAwesomeIcon
+          icon={faChevronUp}
+          className=" green-chevron-up fa-3x"
+        />
+        <FontAwesomeIcon
+          icon={faChevronRight}
+          className=" green-chevron-right  fa-3x"
+        />
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className=" green-chevron-down fa-3x"
+        />
+        <FontAwesomeIcon
+          icon={faChevronLeft}
+          className=" green-chevron-left fa-3x"
+        />
+      </div>
     </div>
   );
 };
