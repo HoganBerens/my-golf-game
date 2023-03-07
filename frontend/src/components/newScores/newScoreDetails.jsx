@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import "./newScoreDetails.css";
 import axios from "axios";
 
 const NewScoreDetails = () => {
   const [courses, setCourses] = useState([]);
 
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      "Content-Type": "application/json",
+    },
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/courses", config)
       .then((response) => {
-        console.log(response, "success");
+        setCourses(response.data);
       })
       .catch((err) => {
         console.log(err, "error");
@@ -24,9 +31,10 @@ const NewScoreDetails = () => {
           <label>Select a Course</label>
           <select name="selectedCourse">
             <option value="" hidden={true}></option>
-            {[].map(() => (
-              <option></option>
+            {courses.map((course, index) => (
+              <option key={index}>{course.name}</option>
             ))}
+            {console.log(courses)}
           </select>
         </div>
       </form>
