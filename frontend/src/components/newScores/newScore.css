@@ -1,0 +1,75 @@
+.newScore-container {
+  height: 100vh;
+  overflow: scroll;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.newScore-fairway-container {
+  position: relative;
+  height: 60vh;
+  max-width: 100%;
+}
+
+.fairway-photo {
+  margin: 23% 0;
+  width: 40%;
+  height: 50%;
+}
+
+.fairway-chevron-up {
+  position: absolute;
+  top: 6%;
+  left: 45%;
+}
+
+.fairway-chevron-right {
+  position: absolute;
+  right: 18%;
+  top: 35%;
+}
+
+.fairway-chevron-down {
+  position: absolute;
+  top: 68%;
+  left: 45%;
+}
+
+.fairway-chevron-left {
+  position: absolute;
+  left: 18%;
+  top: 35%;
+}
+
+.newScore-green-container {
+  position: relative;
+  height: 80vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.green-photo {
+  margin: 60% 0;
+  max-width: 50%;
+  max-height: 30%;
+}
+
+.green-chevron-up {
+  position: absolute;
+  top: 23%;
+}
+.green-chevron-down {
+  position: absolute;
+  top: 65%;
+}
+.green-chevron-left {
+  position: absolute;
+  left: 12%;
+  top: 45%;
+}
+.green-chevron-right {
+  position: absolute;
+  top: 45%;
+  right: 12%;
+}
