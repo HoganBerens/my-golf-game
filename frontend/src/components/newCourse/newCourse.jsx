@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import axios from "axios";
+import "./newCourse.css";
 
 const NewCourse = () => {
   let colorRef = useRef("");
@@ -66,8 +66,8 @@ const NewCourse = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={courseSubmitHandler}>
+    <div className="new-course-container container   ">
+      <form onSubmit={courseSubmitHandler} className="new-course-form">
         <input type="text" placeholder="Course Name" />
         <input
           id="tee-color"
@@ -89,8 +89,12 @@ const NewCourse = () => {
           placeholder="Rating"
           ref={ratingRef}
         />
-        <button onClick={newTeesHandler}>Add New Tees</button>
-        <button type="submit">Submit</button>
+        <button className="newTeesButton" onClick={newTeesHandler}>
+          Add New Tees
+        </button>
+        <button className="SubmitButton" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

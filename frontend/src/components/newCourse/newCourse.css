@@ -1,0 +1,28 @@
+.new-course-container {
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  background-color: #e6e5d4;
+}
+
+.new-course-form {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 5%;
+  color: #e6e5d4;
+}
+input {
+  width: 100%;
+  padding: 6% 0%;
+}
+
+.newTeesButton {
+  margin: 10%;
+  max-width: 30%;
+}
+
+.submitButton {
+  margin: 10%;
+}

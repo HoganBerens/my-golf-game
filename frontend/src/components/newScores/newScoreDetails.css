@@ -1,0 +1,13 @@
+.newScoreDetailsContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #e6e5d4;
+}
+.newScoreDetailsForm {
+  max-width: 100%;
+}
+label {
+  margin: 4%;
+}
