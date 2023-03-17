@@ -5,6 +5,11 @@
   overflow-x: hidden;
 }
 
+.newScore-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .newScore-fairway-container {
   position: relative;
   height: 60vh;
