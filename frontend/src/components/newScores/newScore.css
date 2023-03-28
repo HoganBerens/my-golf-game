@@ -3,78 +3,86 @@
   overflow: scroll;
   max-width: 100%;
   overflow-x: hidden;
+  background-color: #e6e5d4;
+}
+.newScore-title {
+  margin-top: 10%;
 }
 
 .newScore-form {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .newScore-fairway-container {
   position: relative;
-  height: 60vh;
-  max-width: 100%;
+  margin: 35% 0px;
 }
 
-.fairway-photo {
-  margin: 23% 0;
+img {
+  height: 40%;
   width: 40%;
-  height: 50%;
 }
 
 .fairway-chevron-up {
   position: absolute;
-  top: 6%;
-  left: 45%;
+  bottom: 105%;
+  right: 45%;
 }
-
-.fairway-chevron-right {
-  position: absolute;
-  right: 18%;
-  top: 35%;
-}
-
 .fairway-chevron-down {
   position: absolute;
-  top: 68%;
-  left: 45%;
+  top: 105%;
+  right: 45%;
 }
-
 .fairway-chevron-left {
   position: absolute;
-  left: 18%;
-  top: 35%;
+  top: 40%;
+  right: 78%;
+}
+.fairway-chevron-right {
+  position: absolute;
+  top: 40%;
+  left: 76%;
 }
 
 .newScore-green-container {
+  margin: 30% 0px;
   position: relative;
-  height: 80vh;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.green-photo {
-  margin: 60% 0;
-  max-width: 50%;
-  max-height: 30%;
 }
 
 .green-chevron-up {
   position: absolute;
-  top: 23%;
+  bottom: 105%;
+  right: 45%;
 }
 .green-chevron-down {
   position: absolute;
-  top: 65%;
+  top: 105%;
+  right: 45%;
 }
 .green-chevron-left {
   position: absolute;
-  left: 12%;
-  top: 45%;
+  top: 40%;
+  right: 78%;
 }
 .green-chevron-right {
   position: absolute;
-  top: 45%;
-  right: 12%;
+  top: 40%;
+  left: 76%;
+}
+
+.input-bunker-hit {
+  margin: 4% 0;
+}
+.input-putt-distance {
+  margin: 4% 0;
+}
+
+.input-number-of-putts {
+  margin: 4% 0;
+}
+
+.input-hole-score {
+  margin: 4% 0;
 }
