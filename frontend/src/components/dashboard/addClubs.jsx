@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../App";
+import React from "react";
 
 const AddClubs = () => {
-  const { user, setUser } = useContext(UserContext);
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   return (
     <div>
