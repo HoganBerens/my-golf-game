@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./loginPage.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { UserContext } from "../../main";
 
 const LoginPage = () => {
-  const { user, setUser } = useContext(UserContext);
-
   let loginHandler = (event) => {
     event.preventDefault();
     axios
@@ -17,8 +14,12 @@ const LoginPage = () => {
       .then((response) => {
         // login and authenticate
         if (response.data) {
-          setUser(response.data);
-          window.location = "/dashboard";
+          sessionStorage.setItem("user", JSON.stringify(response.data));
+          if ((response.data.clubs || []).length === 0) {
+            window.location.pathname = "/addClubs";
+          } else {
+            window.location.pathname = "/dashboard";
+          }
         } else {
           alert("Username or Password incorrect");
         }

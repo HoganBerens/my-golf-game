@@ -24,6 +24,7 @@ const Registration = () => {
           email: event.target[3].value,
           username: event.target[4].value,
           password: event.target[5].value,
+          clubs: [],
         },
         config
       )

@@ -1,30 +1,32 @@
-import React, { useRef, useState } from 'react';
-import './newScore.css';
+import React, { useRef, useState, useEffect } from "react";
+import "./newScore.css";
 import {
   faChevronUp,
   faChevronDown,
   faChevronLeft,
   faChevronRight,
-  faCircleQuestion,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import greenPhoto from '../../assets/green.png';
-import fairwayPhoto from '../../assets/fairway.png';
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import greenPhoto from "../../assets/green.png";
+import fairwayPhoto from "../../assets/fairway.png";
 
 const NewScore = () => {
-  let fairwayHitRef = useRef('');
-  let apprDistanceRef = useRef('');
-  let bunkerHitRef = useRef('');
-  let greenHitRef = useRef('');
-  let puttDistanceRef = useRef('');
-  let numberOfPuttsRef = useRef('');
-  let holeScoreRef = useRef('');
+  const [roundScore, setRoundScore] = useState([]);
+  const element = document.getElementById("holeTitle");
 
-  let roundScore = [];
+  let clubHitOffTeeRef = useRef("");
+  let fairwayHitRef = useRef("");
+  let apprDistanceRef = useRef("");
+  let bunkerHitRef = useRef("");
+  let greenHitRef = useRef("");
+  let puttDistanceRef = useRef("");
+  let numberOfPuttsRef = useRef("");
+  let holeScoreRef = useRef("");
 
   let newScoreSubmitHandler = (event) => {
     event.preventDefault();
     let holeResults = {
+      clubHitOffTee: clubHitOffTeeRef.current,
       fairwayHit: fairwayHitRef.current,
       approachDistance: apprDistanceRef.current.value,
       bunkerHit: bunkerHitRef.current.value,
@@ -34,15 +36,18 @@ const NewScore = () => {
       holeScore: holeScoreRef.current.value,
     };
 
-    roundScore.push(holeResults);
+    setRoundScore((roundScore) => [...roundScore, holeResults]);
 
-    fairwayHitRef.current = '';
-    apprDistanceRef.current.value = '';
-    bunkerHitRef.current.value = '';
-    greenHitRef.current = '';
-    puttDistanceRef.current.value = '';
-    numberOfPuttsRef.current.value = '';
-    holeScoreRef.current.value = '';
+    element.scrollIntoView(true);
+
+    clubHitOffTeeRef.current = "";
+    fairwayHitRef.current = "";
+    apprDistanceRef.current.value = "";
+    bunkerHitRef.current.value = "";
+    greenHitRef.current = "";
+    puttDistanceRef.current.value = "";
+    numberOfPuttsRef.current.value = "";
+    holeScoreRef.current.value = "";
   };
 
   let fairwayHitHandler = (event) => {
@@ -52,9 +57,19 @@ const NewScore = () => {
     greenHitRef.current = event.target.id;
   };
 
+  let holeNumber = "";
+
+  for (let i = 0; i <= roundScore.length; i++) {
+    holeNumber = i + 1;
+  }
+
   return (
     <div className=" newScore-container container">
+      <h1 id="holeTitle" className="newScore-title">
+        Hole: {holeNumber}
+      </h1>
       <form className="newScore-form" onSubmit={newScoreSubmitHandler}>
+        <select ref={clubHitOffTeeRef}></select>
         <div className="newScore-fairway-container">
           <img
             onClick={fairwayHitHandler}
@@ -93,6 +108,7 @@ const NewScore = () => {
           type="text"
           ref={apprDistanceRef}
         />
+        <select></select>
         <div className="newScore-green-container">
           <img
             onClick={greenHitHandler}
@@ -124,32 +140,36 @@ const NewScore = () => {
             icon={faChevronLeft}
             className=" green-chevron-left fa-3x"
           />
-          <input
-            id="bunker-hit"
-            placeholder="Did you hit a bunker?"
-            type="text"
-            ref={bunkerHitRef}
-          />
-          <input
-            id="putt-distance"
-            placeholder="First Putt Distance"
-            type="text"
-            ref={puttDistanceRef}
-          />
-          <input
-            id="number-of-putts"
-            placeholder="Number of putts"
-            type="text"
-            ref={numberOfPuttsRef}
-          />
-          <input
-            id="hole-score"
-            placeholder="Hole Score"
-            type="text"
-            ref={holeScoreRef}
-          />
-          <button type="submit">Submit</button>
         </div>
+        <input
+          className="input-bunker-hit"
+          id="bunker-hit"
+          placeholder="Did you hit a greenside bunker?"
+          type="text"
+          ref={bunkerHitRef}
+        />
+        <input
+          className="input-putt-distance"
+          id="putt-distance"
+          placeholder="First Putt Distance"
+          type="text"
+          ref={puttDistanceRef}
+        />
+        <input
+          className="input-number-of-putts"
+          id="number-of-putts"
+          placeholder="Number of putts"
+          type="text"
+          ref={numberOfPuttsRef}
+        />
+        <input
+          className="input-hole-score"
+          id="hole-score"
+          placeholder="Hole Score"
+          type="text"
+          ref={holeScoreRef}
+        />
+        <button type="submit">Continue to Next Hole</button>
       </form>
     </div>
   );
