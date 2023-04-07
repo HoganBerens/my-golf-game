@@ -13,6 +13,18 @@ app.get("/users", async (request, response) => {
   }
 });
 
+app.post("/updateUser", async (request, response) => {
+  await User.findOneAndUpdate(
+    { username: request.body.username },
+    {
+      clubs: request.body.clubs,
+    },
+    { new: true }
+  ).then((user) => {
+    response.send(user);
+  });
+});
+
 app.get("/courses", async (request, response) => {
   const courses = await Course.find({});
 
