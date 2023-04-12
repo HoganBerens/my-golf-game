@@ -1,60 +1,60 @@
-import React, { useRef, useState, useEffect } from "react";
-import "./newScore.css";
+import React, { useRef, useState, useEffect } from 'react';
+import './newScore.css';
 import {
   faChevronUp,
   faChevronDown,
   faChevronLeft,
   faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import greenPhoto from "../../assets/green.png";
-import fairwayPhoto from "../../assets/fairway.png";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import greenPhoto from '../../assets/green.png';
+import fairwayPhoto from '../../assets/fairway.png';
 
 const NewScore = () => {
   const [missedFairway, setMissedFairway] = useState(false);
   const [missedGreen, setMissedGreen] = useState(false);
   const [roundScore, setRoundScore] = useState([]);
-  const element = document.getElementById("holeTitle");
-  let user = sessionStorage.getItem("user");
+  const element = document.getElementById('holeTitle');
+  let user = sessionStorage.getItem('user');
   let userObj = JSON.parse(user);
   let clubs = userObj.clubs;
   let missedFairwayLieOptions = [
-    "Rough",
-    "Bunker",
-    "In trees",
-    "Hazard",
-    "Other",
+    'Rough',
+    'Bunker',
+    'In trees',
+    'Hazard',
+    'Other',
   ];
   let missedGreenLieOptions = [
-    "Fairway cut",
-    "Rough",
-    "Bunker",
-    "In trees",
-    "Hazard",
-    "Other",
+    'Fairway cut',
+    'Rough',
+    'Bunker',
+    'In trees',
+    'Hazard',
+    'Other',
   ];
 
-  let clubHitOffTeeRef = useRef("");
-  let fairwayHitRef = useRef("");
-  let missedFairwayLieRef = useRef("");
-  let apprDistanceRef = useRef("");
-  let apprClubRef = useRef("");
-  let greenHitRef = useRef("");
-  let missedGreenLieRef = useRef("");
-  let secondPuttDistanceRef = useRef("");
-  let numberOfPuttsRef = useRef("");
-  let holeScoreRef = useRef("");
+  let clubHitOffTeeRef = useRef('');
+  let fairwayHitRef = useRef('');
+  let missedFairwayLieRef = useRef('');
+  let apprDistanceRef = useRef('');
+  let apprClubRef = useRef('');
+  let greenHitRef = useRef('');
+  let missedGreenLieRef = useRef('');
+  let secondPuttDistanceRef = useRef('');
+  let numberOfPuttsRef = useRef('');
+  let holeScoreRef = useRef('');
 
   let newScoreSubmitHandler = (event) => {
     event.preventDefault();
     let holeResults = {
       clubHitOffTee: clubHitOffTeeRef.current.value,
       fairwayHit: fairwayHitRef.current,
-      missedFairwayLie: missedFairwayLieRef.current.value,
+      missedFairwayLie: missedFairwayLieRef.current,
       approachDistance: apprDistanceRef.current.value,
       apprClub: apprClubRef.current.value,
       greenHit: greenHitRef.current,
-      missedGreenLie: missedGreenLieRef.current.value,
+      missedGreenLie: missedGreenLieRef.current,
       secondPuttDistance: secondPuttDistanceRef.current,
       numberOfPutts: numberOfPuttsRef.current,
       holeScore: holeScoreRef.current.value,
@@ -64,34 +64,42 @@ const NewScore = () => {
 
     element.scrollIntoView(true);
 
-    clubHitOffTeeRef.current.value = "";
-    fairwayHitRef.current = "";
-    missedFairwayLieRef = "";
-    apprDistanceRef.current.value = "";
-    apprClubRef.current = "";
-    greenHitRef.current = "";
-    missedGreenLieRef.current = "";
-    secondPuttDistanceRef.current = "";
-    numberOfPuttsRef.current = "";
-    holeScoreRef.current.value = "";
+    clubHitOffTeeRef.current.value = '';
+    fairwayHitRef.current = '';
+    missedFairwayLieRef.current = '';
+    apprDistanceRef.current.value = '';
+    apprClubRef.current = '';
+    greenHitRef.current = '';
+    missedGreenLieRef.current = '';
+    secondPuttDistanceRef.current = '';
+    numberOfPuttsRef.current = '';
+    holeScoreRef.current.value = '';
 
     console.log(holeResults);
   };
 
   let fairwayHitHandler = (event) => {
     fairwayHitRef.current = event.target.id;
-    fairwayHitRef.current !== "fairway"
+    fairwayHitRef.current !== 'fairway'
       ? setMissedFairway(true)
       : setMissedFairway(false);
   };
   let greenHitHandler = (event) => {
     greenHitRef.current = event.target.id;
-    greenHitRef.current !== "green"
+    greenHitRef.current !== 'green'
       ? setMissedGreen(true)
       : setMissedGreen(false);
   };
 
-  let holeNumber = "";
+  let missedFairwayLieSelectHandler = (event) => {
+    missedFairwayLieRef.current = event.target.value;
+  };
+
+  let missedGreenSelectHandler = (event) => {
+    missedGreenLieRef.current = event.target.value;
+  };
+
+  let holeNumber = '';
 
   for (let i = 0; i <= roundScore.length; i++) {
     holeNumber = i + 1;
@@ -145,7 +153,7 @@ const NewScore = () => {
           />
         </div>
         {missedFairway ? (
-          <select>
+          <select onChange={missedFairwayLieSelectHandler}>
             <option hidden={true}>
               What kind of lie did you have off the tee?
             </option>
@@ -206,7 +214,7 @@ const NewScore = () => {
           />
         </div>
         {missedGreen ? (
-          <select>
+          <select onChange={missedGreenSelectHandler}>
             <option hidden={true}>
               What kind of lie did you have around the green?
             </option>
