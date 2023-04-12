@@ -8,6 +8,7 @@ import Registration from "./components/registration/registration";
 import NewCourse from "./components/newCourse/newCourse";
 import NewScore from "./components/newScores/newScore";
 import AddClubs from "./components/dashboard/addClubs";
+import HoleByHole from "./components/newCourse/holeByHole";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         />
         <Route path={"/newScore"} exact={true} element={<NewScore />} />
         <Route path={"/signUp"} exact={true} element={<Registration />} />
+        <Route path={"/hole-by-hole"} exact={true} element={<HoleByHole />} />
       </Routes>
     </BrowserRouter>
   );

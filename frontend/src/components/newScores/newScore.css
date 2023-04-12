@@ -29,20 +29,24 @@ img {
   position: absolute;
   bottom: 105%;
   right: 45%;
+  padding: 5px;
 }
 .fairway-chevron-down {
   position: absolute;
   top: 105%;
   right: 45%;
+  padding: 5px;
 }
 .fairway-chevron-left {
   position: absolute;
   top: 40%;
+  padding: 5px;
   right: 78%;
 }
 .fairway-chevron-right {
   position: absolute;
   top: 40%;
+  padding: 5px;
   left: 76%;
 }
 
@@ -53,21 +57,25 @@ img {
 
 .green-chevron-up {
   position: absolute;
+  padding: 5px;
   bottom: 105%;
   right: 45%;
 }
 .green-chevron-down {
   position: absolute;
+  padding: 5px;
   top: 105%;
   right: 45%;
 }
 .green-chevron-left {
   position: absolute;
+  padding: 5px;
   top: 40%;
   right: 78%;
 }
 .green-chevron-right {
   position: absolute;
+  padding: 5px;
   top: 40%;
   left: 76%;
 }

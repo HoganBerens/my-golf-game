@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-/* const CourseSchema = new mongoose.Schema({
+const CourseSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -44,6 +44,6 @@ const User = mongoose.model("User", UserSchema);
 });
 
 const Course = mongoose.model("Course", CourseSchema);
- */
+
 module.exports = User;
-//module.exports = Course;
+module.exports = Course;

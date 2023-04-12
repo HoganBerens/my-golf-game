@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import "./newCourse.css";
+import axios from "axios";
 
 const NewCourse = () => {
   let colorRef = useRef("");
@@ -58,7 +59,8 @@ const NewCourse = () => {
         config
       )
       .then((response) => {
-        console.log(response, "success");
+        sessionStorage.setItem("course", JSON.stringify(response.data));
+        window.location = "/hole-by-hole";
       })
       .catch((err) => {
         console.log(err, "error");
