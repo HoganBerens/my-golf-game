@@ -6,7 +6,6 @@ const Dashboard = () => {
 
   return (
     <div className="container">
-      {console.log(user)}
       <Link to="/newScoreDetails">Enter New Score</Link>
       <Link to="/newCourse">Enter New Course</Link>
     </div>

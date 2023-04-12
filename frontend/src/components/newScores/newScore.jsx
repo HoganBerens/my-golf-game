@@ -11,28 +11,52 @@ import greenPhoto from "../../assets/green.png";
 import fairwayPhoto from "../../assets/fairway.png";
 
 const NewScore = () => {
+  const [missedFairway, setMissedFairway] = useState(false);
+  const [missedGreen, setMissedGreen] = useState(false);
   const [roundScore, setRoundScore] = useState([]);
   const element = document.getElementById("holeTitle");
+  let user = sessionStorage.getItem("user");
+  let userObj = JSON.parse(user);
+  let clubs = userObj.clubs;
+  let missedFairwayLieOptions = [
+    "Rough",
+    "Bunker",
+    "In trees",
+    "Hazard",
+    "Other",
+  ];
+  let missedGreenLieOptions = [
+    "Fairway cut",
+    "Rough",
+    "Bunker",
+    "In trees",
+    "Hazard",
+    "Other",
+  ];
 
   let clubHitOffTeeRef = useRef("");
   let fairwayHitRef = useRef("");
+  let missedFairwayLieRef = useRef("");
   let apprDistanceRef = useRef("");
-  let bunkerHitRef = useRef("");
+  let apprClubRef = useRef("");
   let greenHitRef = useRef("");
-  let puttDistanceRef = useRef("");
+  let missedGreenLieRef = useRef("");
+  let secondPuttDistanceRef = useRef("");
   let numberOfPuttsRef = useRef("");
   let holeScoreRef = useRef("");
 
   let newScoreSubmitHandler = (event) => {
     event.preventDefault();
     let holeResults = {
-      clubHitOffTee: clubHitOffTeeRef.current,
+      clubHitOffTee: clubHitOffTeeRef.current.value,
       fairwayHit: fairwayHitRef.current,
+      missedFairwayLie: missedFairwayLieRef.current.value,
       approachDistance: apprDistanceRef.current.value,
-      bunkerHit: bunkerHitRef.current.value,
+      apprClub: apprClubRef.current.value,
       greenHit: greenHitRef.current,
-      firstPuttDistance: puttDistanceRef.current.value,
-      numberOfPutts: numberOfPuttsRef.current.value,
+      missedGreenLie: missedGreenLieRef.current.value,
+      secondPuttDistance: secondPuttDistanceRef.current,
+      numberOfPutts: numberOfPuttsRef.current,
       holeScore: holeScoreRef.current.value,
     };
 
@@ -40,21 +64,31 @@ const NewScore = () => {
 
     element.scrollIntoView(true);
 
-    clubHitOffTeeRef.current = "";
+    clubHitOffTeeRef.current.value = "";
     fairwayHitRef.current = "";
+    missedFairwayLieRef = "";
     apprDistanceRef.current.value = "";
-    bunkerHitRef.current.value = "";
+    apprClubRef.current = "";
     greenHitRef.current = "";
-    puttDistanceRef.current.value = "";
-    numberOfPuttsRef.current.value = "";
+    missedGreenLieRef.current = "";
+    secondPuttDistanceRef.current = "";
+    numberOfPuttsRef.current = "";
     holeScoreRef.current.value = "";
+
+    console.log(holeResults);
   };
 
   let fairwayHitHandler = (event) => {
     fairwayHitRef.current = event.target.id;
+    fairwayHitRef.current !== "fairway"
+      ? setMissedFairway(true)
+      : setMissedFairway(false);
   };
   let greenHitHandler = (event) => {
     greenHitRef.current = event.target.id;
+    greenHitRef.current !== "green"
+      ? setMissedGreen(true)
+      : setMissedGreen(false);
   };
 
   let holeNumber = "";
@@ -69,7 +103,15 @@ const NewScore = () => {
         Hole: {holeNumber}
       </h1>
       <form className="newScore-form" onSubmit={newScoreSubmitHandler}>
-        <select ref={clubHitOffTeeRef}></select>
+        <select ref={clubHitOffTeeRef} name="selectedClubOffTee">
+          <option hidden={true} value="">
+            Select the club you hit off the tee
+          </option>
+          {clubs.map((club, index) => (
+            <option key={index}>{club}</option>
+          ))}
+        </select>
+        <div>Where did you tee shot go?</div>
         <div className="newScore-fairway-container">
           <img
             onClick={fairwayHitHandler}
@@ -102,13 +144,35 @@ const NewScore = () => {
             className=" fairway-chevron-left fa-3x"
           />
         </div>
+        {missedFairway ? (
+          <select>
+            <option hidden={true}>
+              What kind of lie did you have off the tee?
+            </option>
+            {missedFairwayLieOptions.map((lieOption, index) => (
+              <option ref={missedFairwayLieRef} key={index}>
+                {lieOption}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <div></div>
+        )}
         <input
           id="approach-distance"
           placeholder="Approach Distance"
           type="text"
           ref={apprDistanceRef}
         />
-        <select></select>
+        <select>
+          <option hidden={true}>What club are you hitting?</option>
+          {clubs.map((club, index) => (
+            <option ref={apprClubRef} key={index}>
+              {club}
+            </option>
+          ))}
+        </select>
+        <div>Where did your approach shot go?</div>
         <div className="newScore-green-container">
           <img
             onClick={greenHitHandler}
@@ -141,26 +205,26 @@ const NewScore = () => {
             className=" green-chevron-left fa-3x"
           />
         </div>
-        <input
-          className="input-bunker-hit"
-          id="bunker-hit"
-          placeholder="Did you hit a greenside bunker?"
-          type="text"
-          ref={bunkerHitRef}
-        />
+        {missedGreen ? (
+          <select>
+            <option hidden={true}>
+              What kind of lie did you have around the green?
+            </option>
+            {missedGreenLieOptions.map((greenLieOption, index) => (
+              <option ref={missedGreenLieRef} key={index}>
+                {greenLieOption}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <div></div>
+        )}
         <input
           className="input-putt-distance"
-          id="putt-distance"
+          id="second-putt-distance"
           placeholder="First Putt Distance"
           type="text"
-          ref={puttDistanceRef}
-        />
-        <input
-          className="input-number-of-putts"
-          id="number-of-putts"
-          placeholder="Number of putts"
-          type="text"
-          ref={numberOfPuttsRef}
+          ref={secondPuttDistanceRef}
         />
         <input
           className="input-hole-score"
