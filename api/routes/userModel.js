@@ -32,18 +32,4 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-const CourseSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  tees: {
-    type: Array,
-    required: true,
-  },
-});
-
-const Course = mongoose.model("Course", CourseSchema);
-
 module.exports = User;
-module.exports = Course;

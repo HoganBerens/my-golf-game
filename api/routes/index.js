@@ -1,6 +1,6 @@
 var express = require("express");
-const User = require("./models");
-const Course = require("./models");
+const User = require("./userModel");
+const Course = require("./courseModel");
 var app = express();
 
 app.get("/users", async (request, response) => {
